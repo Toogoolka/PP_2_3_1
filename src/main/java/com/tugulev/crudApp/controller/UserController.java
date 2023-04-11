@@ -1,6 +1,7 @@
 package com.tugulev.crudApp.controller;
 import com.tugulev.crudApp.model.User;
 import com.tugulev.crudApp.service.UserService;
+import com.tugulev.crudApp.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +12,7 @@ import javax.validation.Valid;
 
 @Controller
 public class UserController {
-    private final UserService userService;
+    private UserService userService;
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
@@ -32,11 +33,7 @@ public class UserController {
     @GetMapping("/data")
     public String show(@RequestParam(value = "name", required = false) String name,
                        Model model) {
-        if (name == null) {
-            model.addAttribute("users", userService.findAll());
-        } else {
-            model.addAttribute("users", userService.findByName(name));
-        }
+        model.addAttribute("users", userService.findByName(name));
         return "users/data";
     }
     @GetMapping("/users/{id}")
