@@ -49,7 +49,7 @@ public class UserController {
         }
 
         userService.save(user);
-        return "redirect:/data";
+        return "redirect:/data?name=";
     }
 
     @PatchMapping("/users/{id}")
@@ -59,13 +59,13 @@ public class UserController {
             return "users/user";
         }
         userService.update(id, user);
-        return "redirect:/data";
+        return "redirect:/data?name=";
     }
 
     @DeleteMapping("/users/{id}")
     public String delete(@PathVariable("id") Long id) {
         userService.delete(id);
-        return "redirect:/data";
+        return "redirect:/data?name=";
     }
 
 }
