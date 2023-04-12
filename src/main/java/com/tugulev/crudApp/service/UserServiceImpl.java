@@ -42,8 +42,6 @@ public class UserServiceImpl implements UserService{
 
     @Transactional
     public List<User> findByName(String name) {
-        return userRepository.findAll().stream().filter(s -> s.toString().toLowerCase()
-                .contains(name.toLowerCase()))
-                .collect(Collectors.toList());
+        return userRepository.findByNameContainsIgnoreCase(name);
     }
 }
