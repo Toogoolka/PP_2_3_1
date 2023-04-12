@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>{
-    List<User> findByName(String name);
+public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByNameContainsIgnoreCase(String name);
 }
